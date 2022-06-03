@@ -2,12 +2,14 @@
 #include "ui_mainwindow.h"
 #include "textwindow.h"
 #include "ui_textwindow.h"
+#include <regex>
 #include <QFile>
 #include <QFontDialog>
 #include <QColorDialog>
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QFileInfo>
+#include <QInputDialog>
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -34,11 +36,11 @@ void MainWindow::on_tabWidget_tabCloseRequested(int index)
 void MainWindow::on_actionCopy_triggered()
 {
     if(!ui->tabWidget->count()){
-        QMessageBox::information(this,"Error","Please open a file first");
+        QMessageBox::warning(this,"Error","Please open a file first");
         return;
     }
     if(!ui->tabWidget->count()){
-        QMessageBox::information(this,"Error","Please open a file first");
+        QMessageBox::warning(this,"Error","Please open a file first");
         return;
     }
     textWindow *widget = (textWindow*)ui->tabWidget->currentWidget();
@@ -49,7 +51,7 @@ void MainWindow::on_actionCopy_triggered()
 void MainWindow::on_actionPaste_triggered()
 {
     if(!ui->tabWidget->count()){
-        QMessageBox::information(this,"Error","Please open a file first");
+        QMessageBox::warning(this,"Error","Please open a file first");
         return;
     }
     textWindow *widget = (textWindow*)ui->tabWidget->currentWidget();
@@ -60,7 +62,7 @@ void MainWindow::on_actionPaste_triggered()
 void MainWindow::on_actionClear_triggered()
 {
     if(!ui->tabWidget->count()){
-        QMessageBox::information(this,"Error","Please open a file first");
+        QMessageBox::warning(this,"Error","Please open a file first");
         return;
     }
     textWindow *widget = (textWindow*)ui->tabWidget->currentWidget();
@@ -71,7 +73,7 @@ void MainWindow::on_actionClear_triggered()
 void MainWindow::on_actionCut_triggered()
 {
     if(!ui->tabWidget->count()){
-        QMessageBox::information(this,"Error","Please open a file first");
+        QMessageBox::warning(this,"Error","Please open a file first");
         return;
     }
     textWindow *widget = (textWindow*)ui->tabWidget->currentWidget();
@@ -82,7 +84,7 @@ void MainWindow::on_actionCut_triggered()
 void MainWindow::on_actionUndo_triggered()
 {
     if(!ui->tabWidget->count()){
-        QMessageBox::information(this,"Error","Please open a file first");
+        QMessageBox::warning(this,"Error","Please open a file first");
         return;
     }
     textWindow *widget = (textWindow*)ui->tabWidget->currentWidget();
@@ -93,7 +95,7 @@ void MainWindow::on_actionUndo_triggered()
 void MainWindow::on_actionRedo_triggered()
 {
     if(!ui->tabWidget->count()){
-        QMessageBox::information(this,"Error","Please open a file first");
+        QMessageBox::warning(this,"Error","Please open a file first");
         return;
     }
     textWindow *widget = (textWindow*)ui->tabWidget->currentWidget();
@@ -104,7 +106,7 @@ void MainWindow::on_actionRedo_triggered()
 void MainWindow::on_actionAligh_center_triggered()
 {
     if(!ui->tabWidget->count()){
-        QMessageBox::information(this,"Error","Please open a file first");
+        QMessageBox::warning(this,"Error","Please open a file first");
         return;
     }
     textWindow *widget = (textWindow*)ui->tabWidget->currentWidget();
@@ -115,7 +117,7 @@ void MainWindow::on_actionAligh_center_triggered()
 void MainWindow::on_actionAlign_left_triggered()
 {
     if(!ui->tabWidget->count()){
-        QMessageBox::information(this,"Error","Please open a file first");
+        QMessageBox::warning(this,"Error","Please open a file first");
         return;
     }
     textWindow *widget = (textWindow*)ui->tabWidget->currentWidget();
@@ -126,7 +128,7 @@ void MainWindow::on_actionAlign_left_triggered()
 void MainWindow::on_actionAlign_right_triggered()
 {
     if(!ui->tabWidget->count()){
-        QMessageBox::information(this,"Error","Please open a file first");
+        QMessageBox::warning(this,"Error","Please open a file first");
         return;
     }
     textWindow *widget = (textWindow*)ui->tabWidget->currentWidget();
@@ -137,7 +139,7 @@ void MainWindow::on_actionAlign_right_triggered()
 void MainWindow::on_actionFont_triggered()
 {
     if(!ui->tabWidget->count()){
-        QMessageBox::information(this,"Error","Please open a file first");
+        QMessageBox::warning(this,"Error","Please open a file first");
         return;
     }
     textWindow *widget = (textWindow*)ui->tabWidget->currentWidget();
@@ -150,7 +152,7 @@ void MainWindow::on_actionFont_triggered()
 void MainWindow::on_actionColor_triggered()
 {
     if(!ui->tabWidget->count()){
-        QMessageBox::information(this,"Error","Please open a file first");
+        QMessageBox::warning(this,"Error","Please open a file first");
         return;
     }
     textWindow *widget = (textWindow*)ui->tabWidget->currentWidget();
@@ -187,20 +189,20 @@ void MainWindow::on_actionOpen_triggered()
 void MainWindow::on_actionsave_triggered()
 {
     if(!ui->tabWidget->count()){
-        QMessageBox::information(this,"Error","Please open a file first");
+        QMessageBox::warning(this,"Error","Please open a file first");
         return;
     }
     textWindow *widget = (textWindow*)ui->tabWidget->currentWidget();
     if(widget->fileName.isEmpty()){
         QString filePath = QFileDialog::getSaveFileName(this, "open the file","","Text (*.txt)");
         if(filePath.isEmpty()){
-            QMessageBox::information(this,"Error","File name can not be empty!");
+            QMessageBox::warning(this,"Error","File name can not be empty!");
             return;
         }
         QFileInfo fileInfo(filePath);
         for(auto& val : fileInfo.fileName()){
             if(val != '.' && val != ' ' && !val.isLetterOrNumber()){
-                QMessageBox::information(this,"Error","Enter valid file name!");
+                QMessageBox::warning(this,"Error","Enter valid file name!");
                 return;
             }
         }
@@ -227,19 +229,19 @@ void MainWindow::on_actionsave_triggered()
 void MainWindow::on_actionSave_as_triggered()
 {
     if(!ui->tabWidget->count()){
-        QMessageBox::information(this,"Error","Please open a file first");
+        QMessageBox::warning(this,"Error","Please open a file first");
         return;
     }
     textWindow *widget = (textWindow*)ui->tabWidget->currentWidget();
     QString filePath = QFileDialog::getSaveFileName(this, "open the file","","Text (*.txt)");
     if(filePath.isEmpty()){
-        QMessageBox::information(this,"Error","File name can not be empty!");
+        QMessageBox::warning(this,"Error","File name can not be empty!");
         return;
     }
     QFileInfo fileInfo(filePath);
     for(auto& val : fileInfo.fileName()){
         if(val != '.' && val != ' ' && !val.isLetterOrNumber()){
-            QMessageBox::information(this,"Error","Enter valid file name!");
+            QMessageBox::warning(this,"Error","Enter valid file name!");
             return;
         }
     }
@@ -253,3 +255,78 @@ void MainWindow::on_actionSave_as_triggered()
     ui->tabWidget->setTabText(ui->tabWidget->currentIndex(),fileInfo.fileName());
     widget->fileName = filePath;
 }
+
+void MainWindow::on_actionFind_triggered()
+{
+    if(!ui->tabWidget->count()){
+        QMessageBox::warning(this,"Error","Please open a file first");
+        return;
+    }
+    QString tarWord = QInputDialog::getText(this,"Word searching","Enter target word");
+    if(tarWord.isEmpty()){
+        QMessageBox::warning(this,"Error","Word can not be empty");
+        return;
+    }
+    textWindow *widget = (textWindow*)ui->tabWidget->currentWidget();
+    widget->ui->textEdit->moveCursor(QTextCursor::Start);
+    while(widget->ui->textEdit->find(tarWord)){
+        QMessageBox::information(this, "Word searching","Word was found");
+        return;
+    }
+    QMessageBox::information(this, "Word searching","Word was not found");
+}
+
+
+void MainWindow::on_actionTo_lower_triggered()
+{
+    if(!ui->tabWidget->count()){
+        QMessageBox::warning(this,"Error","Please open a file first");
+        return;
+    }
+    textWindow *widget = (textWindow*)ui->tabWidget->currentWidget();
+    QTextCursor cursor = widget->ui->textEdit->textCursor();
+    if(cursor.hasSelection())
+    {
+        cursor.insertText(cursor.selectedText().toLower());
+    }
+}
+
+
+void MainWindow::on_actionTo_upper_triggered()
+{
+    if(!ui->tabWidget->count()){
+        QMessageBox::warning(this,"Error","Please open a file first");
+        return;
+    }
+    textWindow *widget = (textWindow*)ui->tabWidget->currentWidget();
+    QTextCursor cursor = widget->ui->textEdit->textCursor();
+    if(cursor.hasSelection())
+    {
+        cursor.insertText(cursor.selectedText().toUpper());
+    }
+}
+
+
+void MainWindow::on_actionReplace_triggered()
+{
+    if(!ui->tabWidget->count()){
+        QMessageBox::warning(this,"Error","Please open a file first");
+        return;
+    }
+    QString oldWord = QInputDialog::getText(this,"Word replacing","Enter old word");
+    if(oldWord.isEmpty()){
+        QMessageBox::warning(this,"Error","Word can not be empty");
+        return;
+    }
+    QString newWord = QInputDialog::getText(this,"Word replacing","Enter new word");
+    if(newWord.isEmpty()){
+        QMessageBox::warning(this,"Error","Word can not be empty");
+        return;
+    }
+    textWindow *widget = (textWindow*)ui->tabWidget->currentWidget();
+    widget->ui->textEdit->moveCursor(QTextCursor::Start);
+    while(widget->ui->textEdit->find(oldWord)){
+        widget->ui->textEdit->textCursor().insertText(newWord);
+    }
+}
+

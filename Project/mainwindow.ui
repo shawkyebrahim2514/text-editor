@@ -23,7 +23,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Notepad</string>
   </property>
   <property name="windowIcon">
    <iconset resource="resources.qrc">
@@ -186,6 +186,9 @@ QTabBar::tab:selected:hover {
    <addaction name="separator"/>
    <addaction name="actionFont"/>
    <addaction name="actionColor"/>
+   <addaction name="separator"/>
+   <addaction name="actionTo_upper"/>
+   <addaction name="actionTo_lower"/>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -231,9 +234,17 @@ QTabBar::tab:selected:hover {
     <addaction name="actionsave"/>
     <addaction name="actionSave_as"/>
    </widget>
+   <widget class="QMenu" name="menuText_converting">
+    <property name="title">
+     <string>Text converting</string>
+    </property>
+    <addaction name="actionTo_lower"/>
+    <addaction name="actionTo_upper"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
    <addaction name="menuText_style"/>
+   <addaction name="menuText_converting"/>
   </widget>
   <action name="actionNew">
    <property name="icon">
@@ -437,6 +448,30 @@ QTabBar::tab:selected:hover {
    </property>
    <property name="shortcut">
     <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="actionTo_lower">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/icons/small.png</normaloff>:/icons/small.png</iconset>
+   </property>
+   <property name="text">
+    <string>To lower</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+L</string>
+   </property>
+  </action>
+  <action name="actionTo_upper">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/icons/capital.png</normaloff>:/icons/capital.png</iconset>
+   </property>
+   <property name="text">
+    <string>To upper</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+U</string>
    </property>
   </action>
  </widget>

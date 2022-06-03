@@ -20,5 +20,7 @@
         <file>icons/open-folder-with-document.png</file>
         <file>icons/save as.png</file>
         <file>icons/windowIcon.png</file>
+        <file>icons/capital.png</file>
+        <file>icons/small.png</file>
     </qresource>
 </RCC>

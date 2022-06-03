@@ -49,6 +49,14 @@ private slots:
 
     void on_actionSave_as_triggered();
 
+    void on_actionFind_triggered();
+
+    void on_actionTo_lower_triggered();
+
+    void on_actionTo_upper_triggered();
+
+    void on_actionReplace_triggered();
+
 private:
     Ui::MainWindow *ui;
 };
