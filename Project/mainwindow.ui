@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1366</width>
+    <height>768</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1366</width>
+    <height>768</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1366</width>
+    <height>768</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="resources.qrc">
+    <normaloff>:/icons/windowIcon.png</normaloff>:/icons/windowIcon.png</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QMenuBar QMenu{
+	background:#CFDBEB;
+	color:#454655;
+	font: 700 10pt &quot;Segoe UI&quot;;
+}
+
+QMenuBar QMenu::separator{
+background:#454655;
+height:2px;
+}
+
+QMenuBar QMenu::item{
+padding: 5px;
+}
+
+QMenuBar QMenu::item:selected{
+	background:rgb(221, 233, 250);
+}
+
+
+QMenuBar{
+	background:#454655;
+	color:#CFDBEB;
+	font: 700 10pt &quot;Segoe UI&quot;;
+}
+
+QMenuBar::item{
+border-right: 1px solid #CFDBEB;
+padding:5px 10px;
+}
+
+QMenuBar::item:selected{
+background:rgb(87, 88, 107);
+}
+
+QMenuBar::item:pressed {
+    background: #CFDBEB;
+	color:#454655;
+}
+
+
+QToolBar{
+background:#CFDBEB;border:none;
+padding: 10px;
+}
+
+QToolButton{
+width:50px;
+height:35px;
+border:none;
+}
+
+QToolButton::hover{
+background:rgb(221, 233, 250);
+}
+
+QToolButton::pressed{
+background:rgb(200, 212, 227);
+}
+
+QToolBar::separator{
+background:#454655;
+border:none;
+ouline:0;
+width:2px;
+}
+
+
+QTabWidget{
+outline:0;
+background:green;
+}
+
+QTabWidget::pane { /* The tab widget frame */
+outline:0;
+	background:#CFDBEB;
+border:none;
+}
+
+
+
+/* Style the tab using the tab sub-control. Note that
+    it reads QTabBar _not_ QTabWidget */
+QTabBar::tab {
+    background: #454655;
+    padding: 5px 10px;
+	font: 700 10pt &quot;Segoe UI&quot;;
+	color:#CFDBEB;
+	outline:0;
+	border:none;
+}
+
+
+QTabBar::tab:selected {
+    background: #CFDBEB;
+color:#454655;
+}
+
+QTabBar::tab:!selected:hover {
+	background:rgb(87, 88, 107);
+}
+
+QTabBar::tab:selected:hover {
+	background:rgb(221, 233, 250);
+}
+</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="currentIndex">
+       <number>-1</number>
+      </property>
+      <property name="tabsClosable">
+       <bool>true</bool>
+      </property>
+      <property name="movable">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionNew"/>
+   <addaction name="actionOpen"/>
+   <addaction name="actionsave"/>
+   <addaction name="actionSave_as"/>
+   <addaction name="separator"/>
+   <addaction name="actionUndo"/>
+   <addaction name="actionRedo"/>
+   <addaction name="separator"/>
+   <addaction name="actionCopy"/>
+   <addaction name="actionPaste"/>
+   <addaction name="actionCut"/>
+   <addaction name="actionClear"/>
+   <addaction name="separator"/>
+   <addaction name="actionFind"/>
+   <addaction name="actionReplace"/>
+   <addaction name="separator"/>
+   <addaction name="actionAlign_left"/>
+   <addaction name="actionAligh_center"/>
+   <addaction name="actionAlign_right"/>
+   <addaction name="separator"/>
+   <addaction name="actionFont"/>
+   <addaction name="actionColor"/>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1366</width>
+     <height>34</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuEdit">
+    <property name="title">
+     <string>Edit</string>
+    </property>
+    <addaction name="actionUndo"/>
+    <addaction name="actionRedo"/>
+    <addaction name="separator"/>
+    <addaction name="actionCopy"/>
+    <addaction name="actionPaste"/>
+    <addaction name="actionCut"/>
+    <addaction name="actionClear"/>
+    <addaction name="separator"/>
+    <addaction name="actionFind"/>
+    <addaction name="actionReplace"/>
+   </widget>
+   <widget class="QMenu" name="menuText_style">
+    <property name="title">
+     <string>Text style</string>
+    </property>
+    <addaction name="actionAlign_left"/>
+    <addaction name="actionAligh_center"/>
+    <addaction name="actionAlign_right"/>
+    <addaction name="separator"/>
+    <addaction name="actionFont"/>
+    <addaction name="actionColor"/>
+   </widget>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionNew"/>
+    <addaction name="actionOpen"/>
+    <addaction name="actionsave"/>
+    <addaction name="actionSave_as"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuEdit"/>
+   <addaction name="menuText_style"/>
+  </widget>
+  <action name="actionNew">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/icons/add-document-free-icon-font.png</normaloff>:/icons/add-document-free-icon-font.png</iconset>
+   </property>
+   <property name="text">
+    <string>New</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
+   </property>
+  </action>
+  <action name="actionsave">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/icons/folder-download-free-icon-font.png</normaloff>:/icons/folder-download-free-icon-font.png</iconset>
+   </property>
+   <property name="text">
+    <string>Save</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="actionCopy">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/icons/duplicate-free-icon-font.png</normaloff>:/icons/duplicate-free-icon-font.png</iconset>
+   </property>
+   <property name="text">
+    <string>Copy</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+C</string>
+   </property>
+  </action>
+  <action name="actionPaste">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/icons/paste.png</normaloff>:/icons/paste.png</iconset>
+   </property>
+   <property name="text">
+    <string>Paste</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+V</string>
+   </property>
+  </action>
+  <action name="actionClear">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/icons/broom-free-icon-font.png</normaloff>:/icons/broom-free-icon-font.png</iconset>
+   </property>
+   <property name="text">
+    <string>Clear</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+R</string>
+   </property>
+  </action>
+  <action name="actionSave_as">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/icons/save as.png</normaloff>:/icons/save as.png</iconset>
+   </property>
+   <property name="text">
+    <string>Save as</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+S</string>
+   </property>
+  </action>
+  <action name="actionCut">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/icons/scissors-free-icon-font.png</normaloff>:/icons/scissors-free-icon-font.png</iconset>
+   </property>
+   <property name="text">
+    <string>Cut</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+X</string>
+   </property>
+  </action>
+  <action name="actionUndo">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/icons/undo-free-icon-font.png</normaloff>:/icons/undo-free-icon-font.png</iconset>
+   </property>
+   <property name="text">
+    <string>Undo</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Z</string>
+   </property>
+  </action>
+  <action name="actionRedo">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/icons/redo.png</normaloff>:/icons/redo.png</iconset>
+   </property>
+   <property name="text">
+    <string>Redo</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+Z</string>
+   </property>
+  </action>
+  <action name="actionFind">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/icons/search.png</normaloff>:/icons/search.png</iconset>
+   </property>
+   <property name="text">
+    <string>Find</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+F</string>
+   </property>
+  </action>
+  <action name="actionReplace">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/icons/swap.png</normaloff>:/icons/swap.png</iconset>
+   </property>
+   <property name="text">
+    <string>Replace</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+F</string>
+   </property>
+  </action>
+  <action name="actionAlign_left">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/icons/align-left-free-icon-font.png</normaloff>:/icons/align-left-free-icon-font.png</iconset>
+   </property>
+   <property name="text">
+    <string>Align left</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Left</string>
+   </property>
+  </action>
+  <action name="actionAligh_center">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/icons/align-center-free-icon-font.png</normaloff>:/icons/align-center-free-icon-font.png</iconset>
+   </property>
+   <property name="text">
+    <string>Aligh center</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+\</string>
+   </property>
+  </action>
+  <action name="actionAlign_right">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/icons/align-right-free-icon-font.png</normaloff>:/icons/align-right-free-icon-font.png</iconset>
+   </property>
+   <property name="text">
+    <string>Align right</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Right</string>
+   </property>
+  </action>
+  <action name="actionFont">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/icons/text-free-icon-font.png</normaloff>:/icons/text-free-icon-font.png</iconset>
+   </property>
+   <property name="text">
+    <string>Font</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+T</string>
+   </property>
+  </action>
+  <action name="actionColor">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/icons/fill-free-icon-font.png</normaloff>:/icons/fill-free-icon-font.png</iconset>
+   </property>
+   <property name="text">
+    <string>Color</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+F</string>
+   </property>
+  </action>
+  <action name="actionOpen">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/icons/open-folder-with-document.png</normaloff>:/icons/open-folder-with-document.png</iconset>
+   </property>
+   <property name="text">
+    <string>Open</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>
