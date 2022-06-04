@@ -1,5 +1,4 @@
-# notepad
- QT GUI notepad with cpp
+# QT GUI notepad with cpp
 
 ## Empty interface
 ![image](https://user-images.githubusercontent.com/101745968/171969471-1070c2c3-9952-488e-824f-63db0b54e62f.png)
