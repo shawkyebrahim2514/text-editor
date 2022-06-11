@@ -1,4 +1,4 @@
-# QT GUI notepad with cpp
+# QT GUI text editor with cpp
 
 ## Empty interface
 ![image](https://user-images.githubusercontent.com/101745968/171969471-1070c2c3-9952-488e-824f-63db0b54e62f.png)
@@ -31,4 +31,4 @@
 ![image](https://user-images.githubusercontent.com/101745968/171970195-88e66cc2-38c5-4ea6-b70b-04ac78830b78.png) | ![image](https://user-images.githubusercontent.com/101745968/171970201-747c0378-0ba6-4242-a69e-6d42cb21e4a4.png)
 
 ## Try this app
-> Link : https://drive.google.com/file/d/1NEcc02bQrU3XX1sgWz1FByLIUjQU6qCS/view?usp=sharing
+> Link : https://drive.google.com/file/d/16yBhfjcu5d36deHznRNcodjPrRkxHpp7/view?usp=sharing
