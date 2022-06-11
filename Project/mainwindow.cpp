@@ -24,11 +24,26 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
+    while (ui->tabWidget->count()) {
+        on_tabWidget_tabCloseRequested(ui->tabWidget->count() - 1);
+    }
     delete ui;
 }
 
+
 void MainWindow::on_tabWidget_tabCloseRequested(int index)
 {
+    textWindow *widget = (textWindow*)ui->tabWidget->currentWidget();
+    if(!widget->isSaved){
+        QMessageBox::StandardButton reply;
+        reply = QMessageBox::question(this, "File exit", "Do you want to save changes?",
+                                      QMessageBox::Yes|QMessageBox::No);
+        if (reply == QMessageBox::Yes) {
+            if(!on_actionsave_triggered()){
+                return;
+            }
+        }
+    }
     ui->tabWidget->removeTab(index);
 }
 
@@ -186,35 +201,15 @@ void MainWindow::on_actionOpen_triggered()
 }
 
 
-void MainWindow::on_actionsave_triggered()
+bool MainWindow::on_actionsave_triggered()
 {
     if(!ui->tabWidget->count()){
         QMessageBox::warning(this,"Error","Please open a file first");
-        return;
+        return 0;
     }
     textWindow *widget = (textWindow*)ui->tabWidget->currentWidget();
     if(widget->fileName.isEmpty()){
-        QString filePath = QFileDialog::getSaveFileName(this, "open the file","","Text (*.txt)");
-        if(filePath.isEmpty()){
-            QMessageBox::warning(this,"Error","File name can not be empty!");
-            return;
-        }
-        QFileInfo fileInfo(filePath);
-        for(auto& val : fileInfo.fileName()){
-            if(val != '.' && val != ' ' && !val.isLetterOrNumber()){
-                QMessageBox::warning(this,"Error","Enter valid file name!");
-                return;
-            }
-        }
-        QFile file(filePath);
-        if(file.open(QFile::WriteOnly | QFile::Text)){
-            QTextStream out(&file);
-            out << widget->ui->textEdit->toHtml();
-        }
-        file.flush();
-        file.close();
-        ui->tabWidget->setTabText(ui->tabWidget->currentIndex(),fileInfo.fileName());
-        widget->fileName = filePath;
+        return on_actionSave_as_triggered();
     }
     QFile file(widget->fileName);
     if(file.open(QFile::WriteOnly | QFile::Text)){
@@ -223,26 +218,28 @@ void MainWindow::on_actionsave_triggered()
     }
     file.flush();
     file.close();
+    widget->isSaved = true;
+    return 1;
 }
 
 
-void MainWindow::on_actionSave_as_triggered()
+bool MainWindow::on_actionSave_as_triggered()
 {
     if(!ui->tabWidget->count()){
         QMessageBox::warning(this,"Error","Please open a file first");
-        return;
+        return 0;
     }
     textWindow *widget = (textWindow*)ui->tabWidget->currentWidget();
     QString filePath = QFileDialog::getSaveFileName(this, "open the file","","Text (*.txt)");
     if(filePath.isEmpty()){
         QMessageBox::warning(this,"Error","File name can not be empty!");
-        return;
+        return 0;
     }
     QFileInfo fileInfo(filePath);
     for(auto& val : fileInfo.fileName()){
         if(val != '.' && val != ' ' && !val.isLetterOrNumber()){
             QMessageBox::warning(this,"Error","Enter valid file name!");
-            return;
+            return 0;
         }
     }
     QFile file(filePath);
@@ -254,6 +251,8 @@ void MainWindow::on_actionSave_as_triggered()
     file.close();
     ui->tabWidget->setTabText(ui->tabWidget->currentIndex(),fileInfo.fileName());
     widget->fileName = filePath;
+    widget->isSaved = true;
+    return 1;
 }
 
 void MainWindow::on_actionFind_triggered()

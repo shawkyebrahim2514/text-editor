@@ -23,7 +23,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>Notepad</string>
+   <string>Text editor</string>
   </property>
   <property name="windowIcon">
    <iconset resource="resources.qrc">

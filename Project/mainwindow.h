@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -45,9 +46,9 @@ private slots:
 
     void on_actionOpen_triggered();
 
-    void on_actionsave_triggered();
+    bool on_actionsave_triggered();
 
-    void on_actionSave_as_triggered();
+    bool on_actionSave_as_triggered();
 
     void on_actionFind_triggered();
 

@@ -13,3 +13,9 @@ textWindow::~textWindow()
 {
     delete ui;
 }
+
+void textWindow::on_textEdit_textChanged()
+{
+    isSaved = false;
+}
+
