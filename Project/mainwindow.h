@@ -58,6 +58,8 @@ private slots:
 
     void on_actionReplace_triggered();
 
+    void on_actionpage_counting_triggered();
+
 private:
     Ui::MainWindow *ui;
 };

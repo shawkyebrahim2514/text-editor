@@ -172,6 +172,10 @@ void MainWindow::on_actionColor_triggered()
     }
     textWindow *widget = (textWindow*)ui->tabWidget->currentWidget();
     QColor color = QColorDialog::getColor(widget->ui->textEdit->textColor(),this,"Choose font color");
+    if(!color.isValid()){
+        QMessageBox::warning(this,"Error","Please enter valid color");
+        return;
+    }
     widget->ui->textEdit->setTextColor(color);
 
 }
@@ -327,5 +331,29 @@ void MainWindow::on_actionReplace_triggered()
     while(widget->ui->textEdit->find(oldWord)){
         widget->ui->textEdit->textCursor().insertText(newWord);
     }
+}
+
+
+void MainWindow::on_actionpage_counting_triggered()
+{
+    if(!ui->tabWidget->count()){
+        QMessageBox::warning(this,"Error","Please open a file first");
+        return;
+    }
+    int n_words = 0,n_charsSpace,n_lines,n_chars = 0;
+    textWindow *widget = (textWindow*)ui->tabWidget->currentWidget();
+    QString text = widget->ui->textEdit->toPlainText();
+    n_charsSpace = text.size();
+    QStringList s_lines = text.split('\n');
+    n_lines = s_lines.size();
+    n_charsSpace -= (n_lines - 1);
+    for(auto& item : s_lines){
+        QStringList s_words = item.split(' ');
+        for(auto& word : s_words){
+            n_chars += word.size();
+        }
+        n_words += s_words.size();
+    }
+    QMessageBox::information(this,"Page counting","The number of characters without spaces: " + QString::number(n_chars) + "\nThe number of characters with spaces: " + QString::number(n_charsSpace) + "\nThe number of words: " + QString::number(n_words) + "\nThe number of lines: " + QString::number(n_lines));
 }
 

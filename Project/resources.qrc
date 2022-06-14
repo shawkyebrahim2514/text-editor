@@ -22,5 +22,6 @@
         <file>icons/windowIcon.png</file>
         <file>icons/capital.png</file>
         <file>icons/small.png</file>
+        <file>icons/counter.png</file>
     </qresource>
 </RCC>
