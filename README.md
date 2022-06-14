@@ -1,5 +1,20 @@
 # QT GUI text editor with cpp
 
+> features
+```
+  - you can create new file
+  - open an existing file
+  - save the current changes in the same file or in new file
+  - redo, undo, copy, paste, cut and clear text
+  - find word and replace word
+  - align text ( left, center or right )
+  - change text font ( Size, font family, font style, underline or linethrough )
+  - change text color
+  - change characters to upper or to lower
+  - page counting ( number of characters, words and lines )
+  - removable UI bar icons
+```
+
 ## Empty interface
 ![image](https://user-images.githubusercontent.com/101745968/173705992-c0d08f1d-1105-4047-80b1-84de3b7f51a5.png)
 
